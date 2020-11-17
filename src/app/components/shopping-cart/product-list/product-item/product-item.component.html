@@ -4,7 +4,9 @@
       <span class="card-title"> {{ productItem.price  }} </span>
       <p class="card-text">{{ productItem.description }}</p>
       <div class="btn-group text-center">
-          <button type="button" class="btn btn-sm btn-outline-primary mr-4 ml-4">Add</button>
+          <button type="button" class="btn btn-sm btn-outline-primary mr-4 ml-4"
+              (click)="AddProductToCart()"  
+          >Add</button>
           <button type="button" class="btn btn-sm btn-outline-info">Edit</button>
       </div>
     </div>

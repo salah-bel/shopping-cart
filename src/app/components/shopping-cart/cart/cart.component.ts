@@ -1,26 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { MessengerService } from '../../../services/messenger.service';
+import { Product } from '../../../models/product';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems = [
-    {id : 1 , productId : 1, productName: 'test',qty : 4, price : 25, },
-    {id : 2 , productId : 2, productName: 'test2',qty : 2, price : 200, },
-    {id : 3 , productId : 3, productName: 'test3',qty : 6, price : 15, },
-    {id : 4 , productId : 4, productName: 'test4',qty : 1, price : 250, }
-  ];
-
+  cartItems = [];
   cartTotal = 0;
-  
-  constructor() { }
+  product: Product;
 
-  ngOnInit() {  
-    this.cartItems.forEach(item => {
-     this.cartTotal += (item.price * item.qty)
-    })
+  constructor(private messengerService: MessengerService) {}
+
+  ngOnInit() {
+    // get the product comming from productItem
+    this.messengerService.getMessage().subscribe((product: Product) => {
+      this.addProductToCart(product);
+    });
   }
 
+  addProductToCart(product) {
+    // show onely one item by row in cart block
+    let productExist = false;
+    for (let i in this.cartItems) {
+      // if and id of product exist in the cart block increment the quantity and the productExist  became true
+      if ( this.cartItems[i].productId === product.id) {
+        this.cartItems[i].qty++
+        productExist = true;
+      }
+    }
+  // if the productExist == false push the product in the cart array
+  if (!productExist) {
+       // Push products on cart
+       this.cartItems.push({
+        productId: product.id,
+        productName: product.name,
+        qty: 1,
+        price: product.price,
+      });
+    }
+          // calculate the sum of the cart
+          this.cartTotal = 0;
+          this.cartItems.forEach((item) => {
+            this.cartTotal += item.price * item.qty;
+          });
+        
+  }
+  
 }
