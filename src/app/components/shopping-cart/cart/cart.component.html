@@ -1,12 +1,12 @@
 <div class="card-header">Cart</div>
 <ul class="list-group mb-3">
     <li class="list-group-item d-flex justify-content-between lh-condensed"
-        *ngFor="let i of [1,2,3,4]">
+        *ngFor="let cart of cartItems">
 
-    <app-cart-item></app-cart-item>
+    <app-cart-item [cartItem]="cart"></app-cart-item>
     </li>
     <li class="list-group-item d-flex justify-content-between">
-        <span>Total (USD)</span>
-        <strong>$20</strong>
+        <span>Total (EUR)</span>
+        <strong>{{ cartTotal }}</strong>
     </li>
 </ul>

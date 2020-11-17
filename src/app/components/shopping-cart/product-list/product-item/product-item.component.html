@@ -1,11 +1,10 @@
 <div class="card" >
-    <img class="card-img-top" 
-        src="https://i0.wp.com/about-drones.com/wp-content/uploads/2019/10/Skydio-2-FrontLeftTop.png?fit=1200%2C675&ssl=1" alt="Card image cap">
+    <img class="card-img-top" [src]="productItem.imageUrl"  alt="Card image cap">
     <div class="card-body">
-      <span class="card-title"> {{ 56 | currency:'EUR' }} </span>
-      <p class="card-text">Some quick example text to buid make up the bulk of the card's content.</p>
+      <span class="card-title"> {{ productItem.price  }} </span>
+      <p class="card-text">{{ productItem.description }}</p>
       <div class="btn-group text-center">
-          <button type="button" class="btn btn-sm btn-outline-primary mr-4 ml-4">View</button>
+          <button type="button" class="btn btn-sm btn-outline-primary mr-4 ml-4">Add</button>
           <button type="button" class="btn btn-sm btn-outline-info">Edit</button>
       </div>
     </div>

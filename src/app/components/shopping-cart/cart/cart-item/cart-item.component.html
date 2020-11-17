@@ -1,5 +1,6 @@
     <div>
-        <h6 class="my-0">Product name</h6>
-        <small class="text-muted">Brief description</small>
+        <span class="">{{ cartItem.productName }}</span>
+        <span> X </span> 
+        <span>{{cartItem.qty}}</span>
     </div>
-    <span class="text-muted">{{ 20 | currency : "EUR" :1}}</span>
+    <span class="text-muted">Price: {{ cartItem.price * cartItem.qty }} Euro</span>
