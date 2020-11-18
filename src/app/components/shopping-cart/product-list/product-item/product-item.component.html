@@ -2,7 +2,7 @@
     <img class="card-img-top" [src]="productItem.imageUrl"  alt="Card image cap">
     <div class="card-body">
       <span class="card-title"> {{ productItem.price  }} </span>
-      <p class="card-text">{{ productItem.description }}</p>
+      <p class="card-text">{{ productItem.description | slice:80 }}</p>
       <div class="btn-group text-center">
           <button type="button" class="btn btn-sm btn-outline-primary mr-4 ml-4"
               (click)="AddProductToCart()"  

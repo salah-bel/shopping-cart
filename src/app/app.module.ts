@@ -14,6 +14,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { ProductListComponent } from './components/shopping-cart/product-list/product-list.component';
 import { CartItemComponent } from './components/shopping-cart/cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './components/shopping-cart/product-list/product-item/product-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -37,7 +38,8 @@ import { ProductItemComponent } from './components/shopping-cart/product-list/pr
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
     
   ],
  
