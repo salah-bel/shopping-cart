@@ -9,13 +9,27 @@ exports.__esModule = true;
 exports.ProductListComponent = void 0;
 var core_1 = require("@angular/core");
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent(productService) {
+    function ProductListComponent(productService, wishlistService) {
         this.productService = productService;
+        this.wishlistService = wishlistService;
     }
     ProductListComponent.prototype.ngOnInit = function () {
+        this.loadProductList();
+        this.loadWishList();
+    };
+    // load product list
+    ProductListComponent.prototype.loadProductList = function () {
         var _this = this;
         this.productService.getProduct().subscribe(function (products) {
             _this.productsListe = products;
+        });
+    };
+    // load wishlist
+    ProductListComponent.prototype.loadWishList = function () {
+        var _this = this;
+        this.wishlistService.getWishlist().subscribe(function (productIds) {
+            console.log(productIds);
+            _this.wishlist = productIds;
         });
     };
     ProductListComponent = __decorate([

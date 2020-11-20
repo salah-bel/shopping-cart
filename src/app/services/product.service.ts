@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { productsUrl } from '../../config/api';
 
-const URL: string = "http://localhost:3000/products"
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class ProductService {
 
    
 
-constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
   
   getProduct():Observable<Product[]>{  // return array type Product
-     return this.http.get<Product[]>(URL);
+     return this.http.get<Product[]>(productsUrl);
   }
 }
 

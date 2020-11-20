@@ -8,13 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.ProductService = void 0;
 var core_1 = require("@angular/core");
-var URL = "http://localhost:3000/products";
+var api_1 = require("../../config/api");
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
     }
     ProductService.prototype.getProduct = function () {
-        return this.http.get(URL);
+        return this.http.get(api_1.productsUrl);
     };
     ProductService = __decorate([
         core_1.Injectable({

@@ -1,11 +1,13 @@
 <div class="card" >
     <img class="card-img-top" [src]="productItem.imageUrl"  alt="Card image cap">
     <div class="card-body">
-      <span class="card-title"> {{ productItem.price  }} </span>
-      <p class="card-text">{{ productItem.description | slice:80 }}</p>
+      <b class="card-title"> {{ productItem.price  }} Euro </b>
+      <a><i  *ngIf="!addedToWishlist" class="far fa-heart float-right text-danger" (click)="onClickAddToWishlist()" ></i></a>
+      <a><i  *ngIf="addedToWishlist" class="fas fa-heart float-right text-danger" (click)="onClickRmoveFromWishlist()" ></i></a>
+      <p class="card-text">{{ productItem.description | slice: 0:80 }}</p>
       <div class="btn-group text-center">
           <button type="button" class="btn btn-sm btn-outline-primary mr-4 ml-4"
-              (click)="AddProductToCart()"  
+              (click)="onClickAddProductToCart()"  
           >Add</button>
           <button type="button" class="btn btn-sm btn-outline-info">Edit</button>
       </div>

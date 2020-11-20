@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 import { Product } from '../../../../models/product';
 import { MessengerService } from '../../../../services/messenger.service';
+import { WishlistService } from '../../../../services/wishlist.service';
 
 @Component({
   selector: 'app-product-item',
@@ -8,15 +10,39 @@ import { MessengerService } from '../../../../services/messenger.service';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-  @Input() productItem: any;
-  constructor( private messengerService: MessengerService) { }
+  
+  @Input() productItem: Product;
+  @Input() addedToWishlist: boolean;
+
+  constructor(
+    private messengerService: MessengerService,
+    private cartService: CartService,
+    private wishService : WishlistService
+  ) { }
 
   ngOnInit(): void {
   }
 
   // send productItem to the cart 
-  AddProductToCart() {
-     this.messengerService.sendMessage(this.productItem);
+  onClickAddProductToCart() {
+    this.cartService.addProductToCart(this.productItem).subscribe(() => {
+      this.messengerService.sendMessage(this.productItem);
+      
+    })
   }
+  // add to wishlist
+  onClickAddToWishlist() {
+    this.wishService.addToWishlist(this.productItem.id).subscribe(() => {
+      this.addedToWishlist = true;
+      });
+  }
+  // remove from wishlist
+  onClickRmoveFromWishlist() {
+    this.wishService.removeToWishlist(this.productItem.id).subscribe(() => {
+      this.addedToWishlist = false
+    })
+  }
+
+  
 
 }
